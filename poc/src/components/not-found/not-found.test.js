@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import NotFound from './not-found';
 
-it('app renders without crashing', () => {
+it('login renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+  ReactDOM.render(<NotFound />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

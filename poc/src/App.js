@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Login from './components/login/login';
+import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import './App.css';
+import Main from './components/main/main';
+import NotFound from './components/not-found/not-found';
+
+const AppRouter = () => (
+  <Router>
+    <Switch>
+      <Route path="/login" component={Login} exact={true} ></Route>
+      <Route path="/main" component={Main} exact={true}  ></Route>
+      <Route component={NotFound} ></Route>
+    </Switch>
+  </Router>
+);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <AppRouter></AppRouter>
     );
   }
 }
