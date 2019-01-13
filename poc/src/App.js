@@ -8,8 +8,8 @@ import NotFound from './components/not-found/not-found';
 const AppRouter = () => (
   <Router>
     <Switch>
-      <Route path="/login" component={Login} exact={true} ></Route>
-      <Route path="/main" component={Main} exact={true}  ></Route>
+      <Route path="/login" component={Login}></Route>
+      <Route path="/main" component={Main} ></Route>
       <Route component={NotFound} ></Route>
     </Switch>
   </Router>
