@@ -7,16 +7,21 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { ViewList, Assignment } from '@material-ui/icons';
 import logo from '../../assets/afiniti.png';
 import Login from '../login/login';
-import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import NotFound from '../not-found/not-found';
+import IconButton from '@material-ui/core/IconButton';
+import { PowerSettingsNew } from '@material-ui/icons';
+import { Button } from 'react-bootstrap';
+import Filters from './submain/filters/filters';
+import ModelSpecs from './submain/model-specs/model-specs';
 
 const drawerWidth = 240;
 
@@ -41,6 +46,14 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
+
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 });
 
 function PermanentDrawerLeft(props) {
@@ -49,36 +62,64 @@ function PermanentDrawerLeft(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={{boxShadow:"none"}}>
+      <AppBar position="fixed" className={classes.appBar} style={{ boxShadow: "none" }}>
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant="h6" color="inherit" noWrap className={classes.grow}>
             Stan POC
           </Typography>
+
+          <Link to="/jobs" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
+            <Assignment />
+          </Link>
+
+          <Link to="/modelLists" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
+            <ViewList />
+          </Link>
+
+          <Link to="/login" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
+            <PowerSettingsNew />
+          </Link>
+
+
+
         </Toolbar>
       </AppBar>
-      <Drawer className={classes.drawer} variant="permanent" classes={{paper: classes.drawerPaper}} anchor="left">
-        <div style={{height:64,backgroundColor:"#3f51b5"}}>
-            <div style={{textAlign:"center",padding:4}}>
-                <img src={logo} height="55px" style={{padding:6}}></img>
-            </div>
+      <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }} anchor="left">
+        <div style={{ height: 64, backgroundColor: "#3f51b5" }}>
+          <div style={{ textAlign: "center", padding: 4 }}>
+            <img src={logo} height="55px" style={{ padding: 6 }}></img>
+          </div>
         </div>
-        <List style={{padding:0}}>
-          {['Build and Train', 'Validation', 'Deployment'].map((text, index) => (
+        <List style={{ padding: 0 }}>
+          {/* {['Filters', 'Model Specs', 'Callgroups','Data Format','Training','Diagnostics','Model Stacking','Deployment'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
+
+        
+            <ListItem button component={Link} to="./filters">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Filters' />
+            </ListItem>
+       
+         
+            <ListItem button component={Link} to="./modelspecs">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Model Specs' />
+            </ListItem>
+         
         </List>
       </Drawer>
-      <main className={classes.content} style={{marginTop:50}}>
-      <Router>
-        <Switch>
-          <Route path="/main/test" component={Login} exact={true}></Route>
-          <Route path="/main/s" component={Login} exact={true}  ></Route>
-          <Route component={NotFound} ></Route>
-        </Switch>
-      </Router>  
+      <main className={classes.content} style={{ marginTop: 50 }}>
+        
+          <Switch>
+            <Route path="/main/filters" component={Filters} ></Route>
+            <Route path="/main/modelspecs" component={ModelSpecs}  ></Route>
+            <Route component={NotFound} ></Route>
+          </Switch>
+    
       </main>
     </div>
   );

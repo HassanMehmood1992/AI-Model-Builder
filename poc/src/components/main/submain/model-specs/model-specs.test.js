@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './main';
+import ModelSpecs from './model-specs';
 
-it('Main renders without crashing', () => {
+it('Model Specs renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Main />, div);
+  ReactDOM.render(<ModelSpecs />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
