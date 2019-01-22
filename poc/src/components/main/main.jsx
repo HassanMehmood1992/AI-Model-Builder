@@ -22,6 +22,14 @@ import { PowerSettingsNew } from '@material-ui/icons';
 import { Button } from 'react-bootstrap';
 import Filters from './submain/filters/filters';
 import ModelSpecs from './submain/model-specs/model-specs';
+import Callgroups from './submain/callgroups/callgroups';
+import DataFormat from './submain/data-format/data-format';
+import Training from './submain/training/training';
+import Diagnostics from './submain/diagnostics/diagnostics';
+import Validation from './submain/validation/validation';
+import ModelStacking from './submain/model-stacking/modek-stacking';
+import Deployment from './submain/deployment/deployment';
+
 
 const drawerWidth = 240;
 
@@ -109,6 +117,35 @@ function PermanentDrawerLeft(props) {
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Specs' />
             </ListItem>
+
+            <ListItem button component={Link} to="./callgroups">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Callgroups' />
+            </ListItem>
+            <ListItem button component={Link} to="./dataformat">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Data Format' />
+            </ListItem>
+            <ListItem button component={Link} to="./training">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Training' />
+            </ListItem>
+            <ListItem button component={Link} to="./diagnostics">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Diagnostics' />
+            </ListItem>
+            <ListItem button component={Link} to="./validation">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Validation' />
+            </ListItem>
+            <ListItem button component={Link} to="./modelstacking">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Model Stacking' />
+            </ListItem>
+            <ListItem button component={Link} to="./deployment">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='deployment' />
+            </ListItem>
          
         </List>
       </Drawer>
@@ -117,6 +154,13 @@ function PermanentDrawerLeft(props) {
           <Switch>
             <Route path="/main/filters" component={Filters} ></Route>
             <Route path="/main/modelspecs" component={ModelSpecs}  ></Route>
+            <Route path="/main/callgroups" component={Callgroups}  ></Route>
+            <Route path="/main/dataformat" component={DataFormat}  ></Route>
+            <Route path="/main/training" component={Training}  ></Route>
+            <Route path="/main/diagnostics" component={Diagnostics}  ></Route>
+            <Route path="/main/validation" component={Validation}  ></Route>
+            <Route path="/main/modelstacking" component={ModelStacking}  ></Route>
+            <Route path="/main/deployment" component={Deployment}  ></Route>
             <Route component={NotFound} ></Route>
           </Switch>
     

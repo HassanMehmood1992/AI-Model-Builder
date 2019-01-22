@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Callgroups from './callgroups';
+import ModelStacking from './modek-stacking';
 
-it('Callgroups renders without crashing', () => {
+it('ModelStacking renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Callgroups />, div);
+  ReactDOM.render(<ModelStacking />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

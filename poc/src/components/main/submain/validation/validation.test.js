@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Callgroups from './callgroups';
+import Validation from './validation';
 
-it('Callgroups renders without crashing', () => {
+it('Validation renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Callgroups />, div);
+  ReactDOM.render(<Validation />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

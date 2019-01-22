@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Callgroups from './callgroups';
+import Deployment from './deployment';
 
-it('Callgroups renders without crashing', () => {
+it('deployment renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Callgroups />, div);
+  ReactDOM.render(<Deployment />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
