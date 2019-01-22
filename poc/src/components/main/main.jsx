@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { ViewList, Assignment } from '@material-ui/icons';
 import logo from '../../assets/afiniti.png';
 import Login from '../login/login';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link,NavLink } from 'react-router-dom';
 import NotFound from '../not-found/not-found';
 import IconButton from '@material-ui/core/IconButton';
 import { PowerSettingsNew } from '@material-ui/icons';
@@ -29,7 +29,7 @@ import Diagnostics from './submain/diagnostics/diagnostics';
 import Validation from './submain/validation/validation';
 import ModelStacking from './submain/model-stacking/modek-stacking';
 import Deployment from './submain/deployment/deployment';
-
+import './main.css';
 
 const drawerWidth = 240;
 
@@ -66,14 +66,14 @@ const styles = theme => ({
 
 function PermanentDrawerLeft(props) {
   const { classes } = props;
-
+  console.log(props)
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar} style={{ boxShadow: "none" }}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.grow}>
-            Stan POC
+            Cerise
           </Typography>
 
           <Link to="/jobs" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
@@ -107,42 +107,42 @@ function PermanentDrawerLeft(props) {
           ))} */}
 
         
-            <ListItem button component={Link} to="./filters">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/filters' ? 'active' : ''} to="./filters">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Filters' />
             </ListItem>
        
          
-            <ListItem button component={Link} to="./modelspecs">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/modelspecs' ? 'active' : ''}  to="./modelspecs">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Specs' />
             </ListItem>
 
-            <ListItem button component={Link} to="./callgroups">
+            <ListItem button component={NavLink} to="./callgroups">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Callgroups' />
             </ListItem>
-            <ListItem button component={Link} to="./dataformat">
+            <ListItem button component={NavLink} to="./dataformat">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Data Format' />
             </ListItem>
-            <ListItem button component={Link} to="./training">
+            <ListItem button component={NavLink} to="./training">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Training' />
             </ListItem>
-            <ListItem button component={Link} to="./diagnostics">
+            <ListItem button component={NavLink} to="./diagnostics">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Diagnostics' />
             </ListItem>
-            <ListItem button component={Link} to="./validation">
+            <ListItem button component={NavLink} to="./validation">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Validation' />
             </ListItem>
-            <ListItem button component={Link} to="./modelstacking">
+            <ListItem button component={NavLink} to="./modelstacking">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Stacking' />
             </ListItem>
-            <ListItem button component={Link} to="./deployment">
+            <ListItem button component={NavLink} to="./deployment">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='deployment' />
             </ListItem>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Validation from './validation';
+import Validation from './validationtion';
 
 it('Validation renders without crashing', () => {
   const div = document.createElement('div');
