@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class NotFound extends Component {
   render() {
     return (
-      <div>
+      <div style={{marginTop:100}}>
           NOt found
       </div>
     );

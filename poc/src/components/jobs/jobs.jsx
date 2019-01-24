@@ -5,7 +5,7 @@ import './jobs.css'
 class Jobs extends Component {
   render() {
     return (
-      <div>
+      <div style={{marginTop:100}}>
         Jobs
       </div>
     );

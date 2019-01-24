@@ -14,22 +14,23 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { ViewList, Assignment } from '@material-ui/icons';
 import logo from '../../assets/afiniti.png';
-import Login from '../login/login';
+
 import { BrowserRouter as Router, Switch, Route, Link,NavLink } from 'react-router-dom';
-import NotFound from '../not-found/not-found';
+import NotFound from '../../components/not-found/not-found';
 import IconButton from '@material-ui/core/IconButton';
 import { PowerSettingsNew } from '@material-ui/icons';
 import { Button } from 'react-bootstrap';
-import Filters from './submain/filters/filters';
-import ModelSpecs from './submain/model-specs/model-specs';
-import Callgroups from './submain/callgroups/callgroups';
-import DataFormat from './submain/data-format/data-format';
-import Training from './submain/training/training';
-import Diagnostics from './submain/diagnostics/diagnostics';
-import Validation from './submain/validation/validation';
-import ModelStacking from './submain/model-stacking/modek-stacking';
-import Deployment from './submain/deployment/deployment';
-import './main.css';
+import Filters from '../../components/filters/filters';
+import ModelSpecs from '../../components/model-specs/model-specs';
+import Callgroups from '../../components/callgroups/callgroups';
+import DataFormat from '../../components/data-format/data-format';
+import Training from '../../components/training/training';
+import Diagnostics from '../../components/diagnostics/diagnostics';
+import Validation from '../../components/validation/validation';
+import ModelStacking from '../../components/model-stacking/modek-stacking';
+import Deployment from '../../components/deployment/deployment';
+import './HeaderWithLeftNav.css';
+import Header from '../Header/Header'
 
 const drawerWidth = 240;
 
@@ -64,34 +65,13 @@ const styles = theme => ({
   },
 });
 
-function PermanentDrawerLeft(props) {
+function HeaderWithLeftNav(props) {
   const { classes } = props;
   console.log(props)
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={{ boxShadow: "none" }}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap className={classes.grow}>
-            Cerise
-          </Typography>
-
-          <Link to="/jobs" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
-            <Assignment />
-          </Link>
-
-          <Link to="/modelLists" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
-            <ViewList />
-          </Link>
-
-          <Link to="/login" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
-            <PowerSettingsNew />
-          </Link>
-
-
-
-        </Toolbar>
-      </AppBar>
+      
       <Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }} anchor="left">
         <div style={{ height: 64, backgroundColor: "#3f51b5" }}>
           <div style={{ textAlign: "center", padding: 4 }}>
@@ -107,44 +87,44 @@ function PermanentDrawerLeft(props) {
           ))} */}
 
         
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/filters' ? 'active' : ''} to="./filters">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/filters' ? 'active' : ''} to="/main/model/filters">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Filters' />
             </ListItem>
        
          
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/modelspecs' ? 'active' : ''}  to="./modelspecs">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/modelspecs' ? 'active' : ''}  to="/main/model/modelspecs">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Specs' />
             </ListItem>
 
-            <ListItem button component={NavLink} to="./callgroups">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/callgroups' ? 'active' : ''} to="/main/model/callgroups">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Callgroups' />
             </ListItem>
-            <ListItem button component={NavLink} to="./dataformat">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/dataformat' ? 'active' : ''} to="/main/model/dataformat">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Data Format' />
             </ListItem>
-            <ListItem button component={NavLink} to="./training">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/training' ? 'active' : ''} to="/main/model/training">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Training' />
             </ListItem>
-            <ListItem button component={NavLink} to="./diagnostics">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/diagnostics' ? 'active' : ''} to="/main/model/diagnostics">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Diagnostics' />
             </ListItem>
-            <ListItem button component={NavLink} to="./validation">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/validation' ? 'active' : ''} to="/main/model/validation">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Validation' />
             </ListItem>
-            <ListItem button component={NavLink} to="./modelstacking">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/modelstacking' ? 'active' : ''} to="/main/model/modelstacking">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Stacking' />
             </ListItem>
-            <ListItem button component={NavLink} to="./deployment">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/deployment' ? 'active' : ''} to="/main/model/deployment">
               <ListItemIcon><InboxIcon /></ListItemIcon>
-              <ListItemText primary='deployment' />
+              <ListItemText primary='Deployment' />
             </ListItem>
          
         </List>
@@ -152,15 +132,15 @@ function PermanentDrawerLeft(props) {
       <main className={classes.content} style={{ marginTop: 50 }}>
         
           <Switch>
-            <Route path="/main/filters" component={Filters} ></Route>
-            <Route path="/main/modelspecs" component={ModelSpecs}  ></Route>
-            <Route path="/main/callgroups" component={Callgroups}  ></Route>
-            <Route path="/main/dataformat" component={DataFormat}  ></Route>
-            <Route path="/main/training" component={Training}  ></Route>
-            <Route path="/main/diagnostics" component={Diagnostics}  ></Route>
-            <Route path="/main/validation" component={Validation}  ></Route>
-            <Route path="/main/modelstacking" component={ModelStacking}  ></Route>
-            <Route path="/main/deployment" component={Deployment}  ></Route>
+            <Route path="/main/model/filters" component={Filters} ></Route>
+            <Route path="/main/model/modelspecs" component={ModelSpecs}  ></Route>
+            <Route path="/main/model/callgroups" component={Callgroups}  ></Route>
+            <Route path="/main/model/dataformat" component={DataFormat}  ></Route>
+            <Route path="/main/model/training" component={Training}  ></Route>
+            <Route path="/main/model/diagnostics" component={Diagnostics}  ></Route>
+            <Route path="/main/model/validation" component={Validation}  ></Route>
+            <Route path="/main/model/modelstacking" component={ModelStacking}  ></Route>
+            <Route path="/main/model/deployment" component={Deployment}  ></Route>
             <Route component={NotFound} ></Route>
           </Switch>
     
@@ -169,8 +149,8 @@ function PermanentDrawerLeft(props) {
   );
 }
 
-PermanentDrawerLeft.propTypes = {
+HeaderWithLeftNav.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PermanentDrawerLeft);
+export default withStyles(styles)(HeaderWithLeftNav);

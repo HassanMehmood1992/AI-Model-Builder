@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import Login from './components/login/login';
-import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router,Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
-import Main from './components/main/main';
+
 import NotFound from './components/not-found/not-found';
-import ModelLists from './components/model-lists/model-lists'
-import Jobs from './components/jobs/jobs';
+
+import Header from './layouts/Header/Header';
 
 const AppRouter = () => (
   <Router>
     <Switch>
       <Route path="/login" component={Login}></Route>
-      <Route path="/main" component={Main} ></Route>
-      <Route path="/jobs" component={Jobs} ></Route>
-      <Route path="/modelLists" component={ModelLists} ></Route>
+      <Route path="/main" component={Header} ></Route>
+      <Redirect from="/" to="/login" ></Redirect>
       <Route component={NotFound} ></Route>
     </Switch>
   </Router>
