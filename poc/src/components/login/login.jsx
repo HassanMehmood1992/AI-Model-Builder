@@ -10,7 +10,7 @@ class Login extends Component {
     password: ""
   };
   handleSubmit = (event) => {
-    this.props.history.push('/main/lists');
+    this.props.history.push('/main/modelList');
   }
   render() {
     return (

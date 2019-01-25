@@ -55,7 +55,7 @@ const styles = theme => ({
 
 function Header(props) {
   const { classes } = props;
-  const addpading = props.location.pathname.indexOf('/main/model') != -1;
+  const addpading = props.location.pathname.indexOf('/main/jobs') == -1 && props.location.pathname.indexOf('/main/modelList') == -1 ;
   console.log(props)
   return (
     <div className={classes.root}>
@@ -70,7 +70,7 @@ function Header(props) {
             <Assignment />
           </Link>
 
-          <Link to="/main/lists" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
+          <Link to="/main/modelList" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
             <ViewList />
           </Link>
 
@@ -82,9 +82,10 @@ function Header(props) {
       
       <Switch>
         <Route path="/main/jobs" component={Jobs} ></Route>
-        <Route path="/main/lists" component={ModelLists} ></Route>
+        <Route path="/main/modelList" component={ModelLists} ></Route>
         <Route path="/main/model/" component={HeaderWithLeftNav} ></Route>
-        <Route component={NotFound} ></Route>
+        <Redirect from="/main" to="/main/modelList" ></Redirect>
+        {/* <Route component={NotFound} ></Route> */}
       </Switch>
     </div>
   );
