@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './jobs.css'
+import './jobs_create.css'
 
 
-class Jobs extends Component {
+class CreateJob extends Component {
   render() {
     return (
       <div>
-        Jobs
+        CreateJob
       </div>
     );
   }
 }
 
-export default Jobs;
+export default CreateJob;

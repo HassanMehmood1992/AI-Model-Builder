@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import './model-lists.css'
-import 'typeface-roboto';
+import './model-summary.css'
 import { ChevronRight } from '@material-ui/icons';
 import M from '../../assets/M.png';
+import {Router} from 'react-router-dom';
+import { ChevronLeft } from '@material-ui/icons';
 
-import { BrowserRouter as Router, Switch, Route, Link, NavLink , Redirect} from 'react-router-dom';
-
-
-class ModelLists extends Component {
+class ModelSummary extends Component {
   state = {
-      models:[{id:1,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:2,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:3,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:4,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:5,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:6,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
-      {id:7,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'}]
-  };
+    models:[{id:1,name:'Model Name',stan:'Binomial-noncentered',optimizationMatric:'Optimization Matric: IsSale'},
+   ]
+};
+  goback = () =>{
+    this.props.history.goBack();
+  }
   render() {
     return (
+      
+      <React.Fragment>
+      
       <div style={{ marginTop: 100, width: '100%' }}>
-       {this.state.models.map((model) => (
+      <div className="row">
+      <div className="col-md-2">
+      <div style={{margin: '0px 0px 0px 30px', cursor:'pointer'}}> <h5 onClick={this.goback}> <ChevronLeft/> Back</h5></div>
+      </div>
+      <div className="col-md-8" style={{padding:0}}>
+      <h5>Model Summary</h5>
+      </div>
+      </div>
+      
+        {this.state.models.map((model) => (
         <div className="row" key={model.id} style={{marginTop:10}}>
           <div className="col-md-2"></div>
           <div className="col-md-8 card" style={{ padding: 0 }}>
@@ -38,15 +46,16 @@ class ModelLists extends Component {
                 {model.optimizationMatric}
                   </p>
             </div>
-            <Link to={`/main/modelList/${model.id}/model`} style={{ position: 'absolute', right: 5, top: '30%', marginTop: '-10px', zIndex: 1,color:'black' }}>
-              <ChevronRight style={{ height: 50, width: 50, float: 'left', margin: "5px 0px 0px 0px" }} />
-            </Link>
+            <div style={{ position: 'absolute', right: 5, top: '30%', marginTop: '-10px', zIndex: 1 }}>
+              {/* <ChevronRight style={{ height: 50, width: 50, float: 'left', margin: "5px 0px 0px 0px" }} /> */}
+            </div>
           </div>
         </div>
         ))}
       </div>
+      </React.Fragment>
     );
   }
 }
 
-export default ModelLists;
+export default ModelSummary;

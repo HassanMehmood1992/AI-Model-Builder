@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { ViewList, Assignment } from '@material-ui/icons';
 import logo from '../../assets/afiniti.png';
 
-import { BrowserRouter as Router, Switch, Route, Link,NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link,NavLink ,Redirect} from 'react-router-dom';
 import NotFound from '../../components/not-found/not-found';
 import IconButton from '@material-ui/core/IconButton';
 import { PowerSettingsNew } from '@material-ui/icons';
@@ -51,7 +51,7 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
-    flexGrow: 1,
+    
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
   },
@@ -67,6 +67,7 @@ const styles = theme => ({
 
 function HeaderWithLeftNav(props) {
   const { classes } = props;
+  const id = 'new'
   console.log(props)
   return (
     <div className={classes.root}>
@@ -87,64 +88,65 @@ function HeaderWithLeftNav(props) {
           ))} */}
 
         
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/filters' ? 'active' : ''} to="/main/model/filters">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'filters' ? 'active' : ''} to={`/main/model/${id}/filters`} >
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Filters' />
             </ListItem>
        
          
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/modelspecs' ? 'active' : ''}  to="/main/model/modelspecs">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'modelspecs' ? 'active' : ''} to={`/main/model/${id}/modelspecs`} >
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Specs' />
             </ListItem>
 
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/callgroups' ? 'active' : ''} to="/main/model/callgroups">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'callgroups' ? 'active' : ''} to={`/main/model/${id}/callgroups`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Callgroups' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/dataformat' ? 'active' : ''} to="/main/model/dataformat">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'dataformat' ? 'active' : ''} to={`/main/model/${id}/dataformat`}  >
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Data Format' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/training' ? 'active' : ''} to="/main/model/training">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'training' ? 'active' : ''} to= {`/main/model/${id}/training`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Training' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/diagnostics' ? 'active' : ''} to="/main/model/diagnostics">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'diagnostics' ? 'active' : ''} to={`/main/model/${id}/diagnostics`} >
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Diagnostics' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/validation' ? 'active' : ''} to="/main/model/validation">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'validation' ? 'active' : ''}  to={`/main/model/${id}/validation`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Validation' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/modelstacking' ? 'active' : ''} to="/main/model/modelstacking">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'modelstacking' ? 'active' : ''} to={`/main/model/${id}/modelstacking`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Stacking' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/deployment' ? 'active' : ''} to="/main/model/deployment">
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'deployment' ? 'active' : ''} to={`/main/model/${id}/deployment`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Deployment' />
             </ListItem>
          
         </List>
       </Drawer>
-      <main className={classes.content} style={{ marginTop: 50 }}>
+      <div className={classes.content} style={{ marginTop: 50,width:'100%' }}>
         
           <Switch>
-            <Route path="/main/model/filters" component={Filters} ></Route>
-            <Route path="/main/model/modelspecs" component={ModelSpecs}  ></Route>
-            <Route path="/main/model/callgroups" component={Callgroups}  ></Route>
-            <Route path="/main/model/dataformat" component={DataFormat}  ></Route>
-            <Route path="/main/model/training" component={Training}  ></Route>
-            <Route path="/main/model/diagnostics" component={Diagnostics}  ></Route>
-            <Route path="/main/model/validation" component={Validation}  ></Route>
-            <Route path="/main/model/modelstacking" component={ModelStacking}  ></Route>
-            <Route path="/main/model/deployment" component={Deployment}  ></Route>
+            <Route path="/main/model/:id?/filters" component={Filters} ></Route>
+            <Route path="/main/model/:id?/modelspecs" component={ModelSpecs}  ></Route>
+            <Route path="/main/model/:id?/callgroups" component={Callgroups}  ></Route>
+            <Route path="/main/model/:id?/dataformat" component={DataFormat}  ></Route>
+            <Route path="/main/model/:id?/training" component={Training}  ></Route>
+            <Route path="/main/model/:id?/diagnostics" component={Diagnostics}  ></Route>
+            <Route path="/main/model/:id?/validation" component={Validation}  ></Route>
+            <Route path="/main/model/:id?/modelstacking" component={ModelStacking}  ></Route>
+            <Route path="/main/model/:id?/deployment" component={Deployment}  ></Route>
+            <Redirect from="/main/model/:id?" to="/main/model/:id?/filters"></Redirect> 
             <Route component={NotFound} ></Route>
           </Switch>
     
-      </main>
+      </div>
     </div>
   );
 }

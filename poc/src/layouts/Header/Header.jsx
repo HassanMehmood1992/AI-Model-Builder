@@ -19,12 +19,14 @@ import Jobs from '../../components/jobs/jobs';
 import ModelLists from '../../components/model-lists/model-lists';
 import NotFound from '../../components/not-found/not-found';
 import HeaderWithLeftNav from '../HeaderWithLeftNav/HeaderWithLeftNav';
+import HeaderWithLeftNavJobs from '../HeaderWithLeftNavJobs/HeaderWithLeftNavJobs';
+import ModelSummary from '../../components/model-summary/model-summary';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    display: 'flex',
+    
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -55,7 +57,8 @@ const styles = theme => ({
 
 function Header(props) {
   const { classes } = props;
-  const addpading = props.location.pathname.indexOf('/main/jobs') == -1 && props.location.pathname.indexOf('/main/modelList') == -1 ;
+  const id= 'new'
+  const addpading = props.location.pathname.indexOf('/main/modelList') == -1 ;
   console.log(props)
   return (
     <div className={classes.root}>
@@ -65,24 +68,27 @@ function Header(props) {
           <Typography variant="h6" color="inherit" noWrap className={classes.grow}>
             Cerise
           </Typography>
-
-          <Link to="/main/jobs" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
-            <Assignment />
+          <Link to={`/main/model/${id}`} style={{color: 'white', margin: 10 }}>
+            Model
+          </Link>
+          <Link to="/main/jobs/alljobs" style={{color: 'white', margin: 10 }}>
+            Jobs
           </Link>
 
-          <Link to="/main/modelList" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
-            <ViewList />
+          <Link to="/main/modelList" style={{color: 'white', margin: 10 }}>
+            Model List
           </Link>
 
-          <Link to="/login" style={{ textDecoration: 'none', color: 'white', margin: 10, transform: 'scale(1.3)' }}>
+          <Link to="/login" style={{ color: 'white', margin: 10}}>
             <PowerSettingsNew />
           </Link>
         </Toolbar>
       </AppBar>
       
       <Switch>
-        <Route path="/main/jobs" component={Jobs} ></Route>
-        <Route path="/main/modelList" component={ModelLists} ></Route>
+        <Route path="/main/jobs/" component={HeaderWithLeftNavJobs} ></Route>
+        <Route path="/main/modelList" component={ModelLists} exact></Route>
+        <Route path="/main/modelList/:id/model" component={ModelSummary} exact ></Route>
         <Route path="/main/model/" component={HeaderWithLeftNav} ></Route>
         <Redirect from="/main" to="/main/modelList" ></Redirect>
         {/* <Route component={NotFound} ></Route> */}
