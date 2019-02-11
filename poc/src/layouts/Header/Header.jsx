@@ -21,6 +21,7 @@ import NotFound from '../../components/not-found/not-found';
 import HeaderWithLeftNav from '../HeaderWithLeftNav/HeaderWithLeftNav';
 import HeaderWithLeftNavJobs from '../HeaderWithLeftNavJobs/HeaderWithLeftNavJobs';
 import ModelSummary from '../../components/model-summary/model-summary';
+import ModelStacking from '../../components/model-stacking/modek-stacking';
 
 const drawerWidth = 240;
 
@@ -58,7 +59,7 @@ const styles = theme => ({
 function Header(props) {
   const { classes } = props;
   const id= 'new'
-  const addpading = props.location.pathname.indexOf('/main/modelList') == -1 ;
+  const addpading = props.location.pathname.indexOf('/main/modelList') == -1 &&  props.location.pathname.indexOf('/main/modelstacking') == -1;
   console.log(props)
   return (
     <div className={classes.root}>
@@ -70,6 +71,9 @@ function Header(props) {
           </Typography>
           <Link to={`/main/model/${id}`} style={{color: 'white', margin: 10 }}>
             Model
+          </Link>
+          <Link to={`/main/modelstacking`} style={{color: 'white', margin: 10 }}>
+            Model Stacking
           </Link>
           <Link to="/main/jobs/alljobs" style={{color: 'white', margin: 10 }}>
             Jobs
@@ -88,6 +92,7 @@ function Header(props) {
       <Switch>
         <Route path="/main/jobs/" component={HeaderWithLeftNavJobs} ></Route>
         <Route path="/main/modelList" component={ModelLists} exact></Route>
+        <Route path="/main/modelstacking" component={ModelStacking} exact></Route>
         <Route path="/main/modelList/:id/model" component={ModelSummary} exact ></Route>
         <Route path="/main/model/" component={HeaderWithLeftNav} ></Route>
         <Redirect from="/main" to="/main/modelList" ></Redirect>

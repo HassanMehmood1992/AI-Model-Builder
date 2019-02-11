@@ -119,10 +119,6 @@ function HeaderWithLeftNav(props) {
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Validation' />
             </ListItem>
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'modelstacking' ? 'active' : ''} to={`/main/model/${id}/modelstacking`}>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
-              <ListItemText primary='Model Stacking' />
-            </ListItem>
             <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'deployment' ? 'active' : ''} to={`/main/model/${id}/deployment`}>
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Deployment' />
@@ -140,7 +136,6 @@ function HeaderWithLeftNav(props) {
             <Route path="/main/model/:id?/training" component={Training}  ></Route>
             <Route path="/main/model/:id?/diagnostics" component={Diagnostics}  ></Route>
             <Route path="/main/model/:id?/validation" component={Validation}  ></Route>
-            <Route path="/main/model/:id?/modelstacking" component={ModelStacking}  ></Route>
             <Route path="/main/model/:id?/deployment" component={Deployment}  ></Route>
             <Redirect from="/main/model/:id?" to="/main/model/:id?/filters"></Redirect> 
             <Route component={NotFound} ></Route>

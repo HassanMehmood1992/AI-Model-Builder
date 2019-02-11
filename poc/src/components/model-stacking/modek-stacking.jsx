@@ -5,7 +5,7 @@ import './model-stacking.css'
 class ModelStacking extends Component {
   render() {
     return (
-      <div>
+      <div style={{ marginTop: 100, width: '100%' }}>
         ModelStacking
       </div>
     );

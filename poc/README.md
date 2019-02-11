@@ -1,3 +1,7 @@
+## How to run
+
+Clone this project and run ### `npm install` to install the dependencies from package.json
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

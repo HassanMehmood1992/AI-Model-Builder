@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import './filters.css'
 import ACTIONS from "../../redux/filters/filter-actions";
 import { connect } from "react-redux";
+import DatePicker from "react-datepicker"; // https://www.npmjs.com/package/react-datepicker
+import moment from 'moment'
+import DateRangePicker from 'react-bootstrap-daterangepicker'; // https://github.com/skratchdot/react-bootstrap-daterangepicker
+import "react-datepicker/dist/react-datepicker.css";
 import {
 
   Button
@@ -12,6 +16,16 @@ class Filters extends Component {
   handleDelete = () => {
     //delete the task from the store
   };
+  handleStartDateChange = (date) => {
+    this.setState({
+      startdate: date
+    });
+  }
+  handleEndDateChange = (date) => {
+    this.setState({
+      enddate: date
+    });
+  }
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -21,15 +35,23 @@ class Filters extends Component {
     console.log(this.state);
     this.props.setFilters(this.state);
     this.props.globalCall(this.state)
-    alert('model specs updated')
+    alert('filters updated')
     event.preventDefault();
   };
+  handleEvent = (event, picker) => {
+    console.log(picker.startDate);
+    this.setState({
+      startdate: picker.startDate,
+      enddate: picker.endDate
+    });
+    console.log(this.state)
+  }
   componentWillMount() {
     console.log(this.props.AppStore.filters)
     const hh = this.props.AppStore.filters.smefilter;
 
     this.setState({ smefilter: this.props.AppStore.filters.smefilter, startdate: this.props.AppStore.filters.startdate, enddate: this.props.AppStore.filters.enddate });
-    
+
   }
 
   render() {
@@ -54,14 +76,16 @@ class Filters extends Component {
               <h4 className="page-heading">Data Date Range (min-max)</h4>
             </div>
           </div>
-          <div className="row">
+          {/* <div className="row">
+          
             <div className="col-md-4">
               <div className="form-group" >
                 <label>Start Date</label>
-                <input className="form-control" type="text"
-                  defaultValue={this.state.startdate}
-                  name="startdate"
-                  onChange={this.handleChange} />
+                <DatePicker className="form-control"
+                  selected={this.state.startdate}
+                  onChange={this.handleStartDateChange}
+                  dateFormat="dd-MMM-YYYY"
+                   />
               </div>
             </div>
             <div className="col-md-2">
@@ -72,19 +96,33 @@ class Filters extends Component {
             <div className="col-md-4">
               <div className="form-group" >
                 <label >End Date</label>
-                <input className="form-control" type="text" defaultValue={this.state.enddate}
-                  name="enddate"
-                  onChange={this.handleChange} />
+                <DatePicker className="form-control"
+                  selected={this.state.enddate}
+                  onChange={this.handleEndDateChange}
+                  dateFormat="dd-MMM-YYYY"
+                   />
+              </div>
+            </div>
+          </div> */}
+          <div className="row">
+            <div className="col-md-4">
+              <div className="form-group" >
+                <label>SME Data Range</label>
+                <DateRangePicker className="form-control"
+                  startDate={this.state.startdate}
+                  endDate={this.state.enddate}
+                  onEvent={this.handleEvent}
+                ><input type="text" defaultValue={moment(this.state.startdate).format('DD-MMM-YYYY') + ' to ' + moment(this.state.enddate).format('DD-MMM-YYYY')} className="form-control"></input></DateRangePicker>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-10"></div>
-            <div className="col-md-2" style={{textAlign:'right'}}>
-              <Button  className='btn btn-primary' style={{ textTransform:'none', background:'#3f51b5', color:'white',marginBottom:'10px'}} onClick={this.handleSubmit}>Update</Button>
+            <div className="col-md-2" style={{ textAlign: 'right' }}>
+              <Button className='btn btn-primary' style={{ textTransform: 'none', background: '#3f51b5', color: 'white', marginBottom: '10px' }} onClick={this.handleSubmit}>Update</Button>
             </div>
           </div>
-
+          
         </div>
 
       </div>

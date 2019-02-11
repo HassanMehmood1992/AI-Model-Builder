@@ -4,7 +4,7 @@ import 'typeface-roboto';
 import { ChevronRight } from '@material-ui/icons';
 import M from '../../assets/M.png';
 
-import { BrowserRouter as Router, Switch, Route, Link, NavLink , Redirect} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 class ModelLists extends Component {

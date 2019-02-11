@@ -1,0 +1,8 @@
+.react-datepicker-wrapper , .react-bootstrap-daterangepicker-container{
+    display: block !important;
+    
+}
+.react-datepicker__input-container
+{
+    width: 100% !important;
+}
