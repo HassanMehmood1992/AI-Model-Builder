@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './login.css'
 import logo from '../../assets/afiniti.png';
 import 'typeface-roboto';
-
+import ACTIONS from "../../redux/localstorage/localstorage-actions";
+import { connect } from "react-redux";
 
 class Login extends Component {
   state = {
@@ -10,7 +11,25 @@ class Login extends Component {
     password: ""
   };
   handleSubmit = (event) => {
+     this.props.setUser( {user:{
+      name:'Hassan Mehmood',
+      email: 'hassan.mehmood@afiniti.com',
+      loginID:'mehmohx'
+    }})
+    alert('adding default user to local storage')
     this.props.history.push('/main/modelList');
+  }
+  componentWillMount()
+  {
+    //  user is not logged in
+    if(this.props.AppStore.localStorage.user.email == undefined)
+    {
+     
+    }
+    else
+    {
+      this.props.history.push('/main')
+    }
   }
   render() {
     return (
@@ -50,5 +69,14 @@ class Login extends Component {
     );
   }
 }
-
-export default Login;
+const mapStateToProps = state => ({
+  AppStore: state
+});
+const mapDispatchToProps = dispatch => ({
+  setUser: user => dispatch(ACTIONS.setUser(user)),
+  getUser: () => dispatch(ACTIONS.getUser()),
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

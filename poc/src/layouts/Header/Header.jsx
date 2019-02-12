@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{Component} from 'react';
+import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import ACTIONS from "../../redux/localstorage/localstorage-actions";
 
 import Typography from '@material-ui/core/Typography';
 
@@ -12,7 +14,7 @@ import { ViewList, Assignment } from '@material-ui/icons';
 import { BrowserRouter as Router, Switch, Route, Link, NavLink , Redirect} from 'react-router-dom';
 
 import { PowerSettingsNew } from '@material-ui/icons';
-
+import {compose} from 'recompose'
 
 import './Header.css'
 import Jobs from '../../components/jobs/jobs';
@@ -56,11 +58,28 @@ const styles = theme => ({
   },
 });
 
-function Header(props) {
-  const { classes } = props;
+class Header extends Component {
+  handleLogout = () =>{
+    this.props.logout()
+    this.props.history.push('/login')
+  }
+  componentWillMount()
+  {
+    //  user is not logged in
+    if(this.props.AppStore.localStorage.user.email == undefined)
+    {
+      this.props.history.push('/login')
+    }
+    else
+    {
+      
+    }
+  }
+  render(){
+    const { classes } = this.props;
   const id= 'new'
-  const addpading = props.location.pathname.indexOf('/main/modelList') == -1 &&  props.location.pathname.indexOf('/main/modelstacking') == -1;
-  console.log(props)
+  const addpading = this.props.location.pathname.indexOf('/main/modelList') == -1 &&  this.props.location.pathname.indexOf('/main/modelstacking') == -1;
+  console.log(this.props)
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -83,9 +102,9 @@ function Header(props) {
             Model List
           </Link>
 
-          <Link to="/login" style={{ color: 'white', margin: 10}}>
+          <a onClick={this.handleLogout} style={{ color: 'white', margin: 10}}>
             <PowerSettingsNew />
-          </Link>
+          </a>
         </Toolbar>
       </AppBar>
       
@@ -100,10 +119,22 @@ function Header(props) {
       </Switch>
     </div>
   );
+  }
+  
 }
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+const mapStateToProps = state => ({
+  AppStore: state
+});
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(ACTIONS.clearUser()),
+});
 
-export default withStyles(styles)(Header);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps,mapDispatchToProps)
+)
+  (Header);

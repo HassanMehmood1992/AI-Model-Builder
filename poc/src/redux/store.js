@@ -4,10 +4,12 @@ import { createStore, applyMiddleware,combineReducers } from "redux";
 import logger from "redux-logger";
 import reducer from "./filters/filter-reducer";
 import modelreducer from "./model-specs/model-specs-reducer";
+import localStorageReducer from "./localstorage/localstorage-reducer";
 export default function configureStore(initialState) {
   const store = createStore( combineReducers({
       filters: reducer,
-      modelspec:modelreducer
+      modelspec:modelreducer,
+      localStorage: localStorageReducer
 
 }), initialState, applyMiddleware(logger));
   return store;

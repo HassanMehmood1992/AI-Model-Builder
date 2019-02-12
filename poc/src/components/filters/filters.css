@@ -1,6 +1,5 @@
 .react-datepicker-wrapper , .react-bootstrap-daterangepicker-container{
-    display: block !important;
-    
+    display: block !important;    
 }
 .react-datepicker__input-container
 {

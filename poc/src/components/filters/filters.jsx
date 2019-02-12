@@ -6,13 +6,33 @@ import DatePicker from "react-datepicker"; // https://www.npmjs.com/package/reac
 import moment from 'moment'
 import DateRangePicker from 'react-bootstrap-daterangepicker'; // https://github.com/skratchdot/react-bootstrap-daterangepicker
 import "react-datepicker/dist/react-datepicker.css";
+import { CalendarToday as Calender } from '@material-ui/icons';
 import {
 
   Button
 } from "@material-ui/core";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 class Filters extends Component {
   state = { smefilter: '', startdate: '', enddate: '' };
+  classes = {}
+  constructor(props)
+  {
+    super(props)
+    this.classes = props;
+  }
   handleDelete = () => {
     //delete the task from the store
   };
@@ -30,6 +50,9 @@ class Filters extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+  handleChanges = event => {
+  
   };
   handleSubmit = event => {
     console.log(this.state);
@@ -105,15 +128,61 @@ class Filters extends Component {
             </div>
           </div> */}
           <div className="row">
-            <div className="col-md-4">
+            {/* <div className="col-md-4">
               <div className="form-group" >
                 <label>SME Data Range</label>
                 <DateRangePicker className="form-control"
                   startDate={this.state.startdate}
                   endDate={this.state.enddate}
                   onEvent={this.handleEvent}
-                ><input type="text" defaultValue={moment(this.state.startdate).format('DD-MMM-YYYY') + ' to ' + moment(this.state.enddate).format('DD-MMM-YYYY')} className="form-control"></input></DateRangePicker>
+                  ranges =  {{
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                 }}
+                ><input 
+                type="text" 
+                readOnly 
+                value={moment(this.state.startdate).format('DD-MMM-YYYY') + ' to ' + moment(this.state.enddate).format('DD-MMM-YYYY')}
+                className="form-control" style={{backgroundColor:'white'}}></input></DateRangePicker>
               </div>
+            </div> */}
+            <div className="col-md-4" >
+            <div className="form-group"  >
+            <TextField
+              component = {DateRangePicker}
+              startDate={this.state.startdate}
+              endDate={this.state.enddate}
+              onEvent={this.handleEvent}
+              ranges =  {{
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+             }}
+              label="SME Date Range"
+              
+              InputLabelProps={{
+                style: { left: 16 },
+              }}
+
+              className={classNames(this.classes.margin, this.classes.textField)}
+              value={moment(this.state.startdate).format('DD-MMM-YYYY') + ' to ' + moment(this.state.enddate).format('DD-MMM-YYYY')}
+              autoComplete='nope'
+              onChange={this.handleChanges('weightRange')}
+              InputProps={{
+                endAdornment: <InputAdornment position="start"><Calender/></InputAdornment>,
+              }}
+              fullWidth
+            >
+              
+            </TextField>
+            </div>
             </div>
           </div>
           <div className="row">
