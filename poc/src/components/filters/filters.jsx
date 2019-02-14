@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './filters.css'
 import ACTIONS from "../../redux/filters/filter-actions";
+import SOCKET_ACTIONS from "../../redux/socket/socket-actions";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker"; // https://www.npmjs.com/package/react-datepicker
 import moment from 'moment'
@@ -76,7 +77,14 @@ class Filters extends Component {
     this.setState({ smefilter: this.props.AppStore.filters.smefilter, startdate: this.props.AppStore.filters.startdate, enddate: this.props.AppStore.filters.enddate });
 
   }
-
+  // testingColor = () =>
+  // {
+  //   this.props.testingColor()
+  // }
+  testingColor = () =>
+  {
+    this.props.helloSocket("ss")
+  }
   render() {
     return (
       <div className="row" style={{ width: '100%' }}>
@@ -190,6 +198,9 @@ class Filters extends Component {
             <div className="col-md-2" style={{ textAlign: 'right' }}>
               <Button className='btn btn-primary' style={{ textTransform: 'none', background: '#3f51b5', color: 'white', marginBottom: '10px' }} onClick={this.handleSubmit}>Update</Button>
             </div>
+            <div className="col-md-2" style={{ textAlign: 'right' }}>
+              <Button className='btn btn-primary' style={{ textTransform: 'none', background: '#3f51b5', color: 'white', marginBottom: '10px' }} onClick={this.testingColor}>Color</Button>
+            </div>
           </div>
           
         </div>
@@ -204,6 +215,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setFilters: item => dispatch(ACTIONS.setFilters(item)),
   globalCall: item => dispatch(ACTIONS.globalCall(item)),
+  testingColor: () => dispatch(ACTIONS.loadColor()),
+  helloSocket: (message) => dispatch(SOCKET_ACTIONS.sendMessage(message)),
 });
 export default connect(
   mapStateToProps,

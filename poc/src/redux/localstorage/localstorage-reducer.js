@@ -1,7 +1,7 @@
 import ACTIONS from "./localstorage-actions";
 import _ from "lodash";
 const defaultState = {
-  user: localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : {}
+  user: localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')).user : {}
 };
 const localStorageReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const localStorageReducer = (state = defaultState, action) => {
       let user = {
         user: {}
       }
-      localStorage.setItem('currentUser','{}')
+      localStorage.setItem('currentUser',JSON.stringify(user))
       return user;
     }
     default:

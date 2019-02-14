@@ -16,6 +16,10 @@ const filterReducer = (state = defaultState, action) => {
       alert('filter global call')
       return state;
     }
+    case ACTIONS.Types.TEST_COLOR: {
+      alert(action.payload)
+      return state;
+    }
     default:
       return state;
   }
