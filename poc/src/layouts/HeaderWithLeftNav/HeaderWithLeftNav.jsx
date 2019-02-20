@@ -92,16 +92,14 @@ function HeaderWithLeftNav(props) {
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Filters' />
             </ListItem>
-       
+            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'callgroups' ? 'active' : ''} to={`/main/model/${id}/callgroups`}>
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary='Callgroups' />
+            </ListItem>
          
             <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'modelspecs' ? 'active' : ''} to={`/main/model/${id}/modelspecs`} >
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary='Model Specs' />
-            </ListItem>
-
-            <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'callgroups' ? 'active' : ''} to={`/main/model/${id}/callgroups`}>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
-              <ListItemText primary='Callgroups' />
             </ListItem>
             <ListItem button component={NavLink} className={props.location.pathname === '/main/model/'+id+'dataformat' ? 'active' : ''} to={`/main/model/${id}/dataformat`}  >
               <ListItemIcon><InboxIcon /></ListItemIcon>

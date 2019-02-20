@@ -58,8 +58,9 @@ class Filters extends Component {
   handleSubmit = event => {
     console.log(this.state);
     this.props.setFilters(this.state);
-    this.props.globalCall(this.state)
-    alert('filters updated')
+    //this.props.globalCall(this.state)
+    alert('Job created')
+    this.props.history.push('/main/jobs/new/view');
     event.preventDefault();
   };
   handleEvent = (event, picker) => {
@@ -77,6 +78,9 @@ class Filters extends Component {
     this.setState({ smefilter: this.props.AppStore.filters.smefilter, startdate: this.props.AppStore.filters.startdate, enddate: this.props.AppStore.filters.enddate });
 
   }
+  // componentDidUpdate(prevProps, prevState, snapshot) {
+  //   alert('s')
+  // }
   // testingColor = () =>
   // {
   //   this.props.testingColor()
